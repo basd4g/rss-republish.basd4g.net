@@ -1,0 +1,24 @@
+{
+  "name": "rss-republish.basd4g.net",
+  "version": "1.0.0",
+  "description": "Republish RSS feeds of basd4g",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "./node_modules/vercel/dist/index.js dev",
+    "deploy": "./node_modules/vercel/dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basd4g/rss-republish.basd4g.net.git"
+  },
+  "author": "Keisuke Nakayama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basd4g/rss-republish.basd4g.net/issues"
+  },
+  "homepage": "https://github.com/basd4g/rss-republish.basd4g.net#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^21.0.1"
+  }
+}

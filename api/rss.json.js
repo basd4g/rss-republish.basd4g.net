@@ -2,7 +2,24 @@
 const Parser = require('rss-parser')
 const parser = new Parser()
 
-module.exports = async (req, res) => {
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  return await fn(req, res);
+}
+
+const handler = async (req, res) => {
   await (async ()=> {
     const feedQiita = await parser.parseURL('https://qiita.com/basd4g/feed.atom')
     const feedHugo = await parser.parseURL('https://memo.basd4g.net/posts/index.xml')
@@ -14,3 +31,5 @@ module.exports = async (req, res) => {
     res.status(500).json({feeds: [], error:e.toString()});
   });
 }
+
+module.exports = allowCors(handler);

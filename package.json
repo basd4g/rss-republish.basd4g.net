@@ -5,7 +5,8 @@
   "main": "api/index.js",
   "scripts": {
     "dev": "./node_modules/vercel/dist/index.js dev",
-    "deploy": "./node_modules/vercel/dist/index.js"
+    "deploy": "./node_modules/vercel/dist/index.js",
+    "deploy:prod": "./node_modules/vercel/dist/index.js --prod"
   },
   "repository": {
     "type": "git",
